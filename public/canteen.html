@@ -232,9 +232,26 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-siz
 
 <!-- ================= ADMIN ================= -->
 <main id="admin" class="hide">
-<section class="wrap sec">
-  <h1 style="font-size:30px;margin:26px 0 6px">Cashier <span class="grad">control desk</span></h1>
-  <p class="mut" style="margin:0 0 18px">Live queue auto-refreshes every 5 seconds. Slots auto-close and release unpicked stock.</p>
+<section class="wrap sec hide" id="adminLock">
+  <div class="card hl lock">
+    <div style="font-size:40px">🔐</div>
+    <h2 style="margin:8px 0 4px;font-size:22px">Cashier login</h2>
+    <p class="mut" style="font-size:13px;margin:0 0 12px">Enter the canteen desk passcode to open the live queue.</p>
+    <input id="pinInput" type="password" inputmode="numeric" maxlength="8" placeholder="4-digit passcode" style="text-align:center;letter-spacing:.4em;font-size:18px" onkeydown="if(event.key==='Enter')doLogin()"/>
+    <button class="btn" style="width:100%;margin-top:12px" onclick="doLogin()">Unlock desk</button>
+    <p class="mut" style="font-size:11.5px;margin-top:10px" id="pinMsg"></p>
+  </div>
+</section>
+
+<section class="wrap sec hide" id="adminDesk">
+  <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+    <div>
+      <h1 style="font-size:30px;margin:26px 0 6px">Cashier <span class="grad">control desk</span></h1>
+      <p class="mut" style="margin:0 0 18px">Live queue auto-refreshes every 5 seconds. Slots auto-close and release unpicked stock.</p>
+    </div>
+    <div class="spacer" style="flex:1"></div>
+    <button class="btn ghost sm" onclick="logout()">Lock desk 🔒</button>
+  </div>
   <div class="stat" id="stats"></div>
 
   <div id="alerts" style="margin-top:16px"></div>
@@ -267,12 +284,23 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-siz
 <!-- payment modal -->
 <div class="modal" id="payModal"><div class="sheet">
   <div style="font-size:40px">💳</div>
-  <h3 style="margin:8px 0 2px">Pay via GPay UPI</h3>
-  <p class="mut" style="font-size:13px;margin:0">FX Canteen · fxec.canteen@okicici</p>
-  <div class="qr" id="qrBox"></div>
-  <div style="font-size:30px;font-family:Sora;font-weight:800">₹<span id="payAmt">0</span></div>
-  <p class="mut" style="font-size:12px">Scan with any UPI app or tap below to simulate the payment.</p>
-  <button class="btn" style="width:100%;margin-top:8px" onclick="confirmPay()">Simulate GPay payment ✅</button>
+  <h3 style="margin:8px 0 2px">Choose how to pay</h3>
+  <div style="font-size:30px;font-family:Sora;font-weight:800;margin-top:6px">₹<span id="payAmt">0</span></div>
+  <div class="paypick">
+    <button id="pmUpi" class="on" onclick="setPayMode('upi')">📱 UPI QR</button>
+    <button id="pmCash" onclick="setPayMode('cash')">🧾 Pay in person</button>
+  </div>
+  <div id="upiPane">
+    <p class="mut" style="font-size:13px;margin:0">FX Canteen · UPI ID: paytm.s2fntkv@pty</p>
+    <img class="qrimg" src="/__l5e/assets-v1/62885350-606e-4f76-be76-e55a80479d78/canteen-upi-qr.jpeg" alt="Paytm UPI QR code to pay the FX canteen"/>
+    <p class="mut" style="font-size:12px">Scan with GPay, Paytm, PhonePe or any UPI app, then confirm below.</p>
+    <button class="btn" style="width:100%;margin-top:4px" onclick="confirmPay()">I've paid ✅</button>
+  </div>
+  <div id="cashPane" class="hide">
+    <p class="mut" style="font-size:13px;margin:10px 0 0">Your order is reserved and the cashier will collect <b>₹<span id="cashAmt">0</span></b> in cash or card when you pick it up.</p>
+    <p class="mut" style="font-size:12px;margin:8px 0 0">Please collect within your slot — unpicked orders are auto-cancelled.</p>
+    <button class="btn" style="width:100%;margin-top:12px" onclick="confirmPay()">Reserve & pay at counter 🧾</button>
+  </div>
   <button class="btn ghost sm" style="width:100%;margin-top:8px" onclick="closeModal('payModal')">Cancel</button>
 </div></div>
 
