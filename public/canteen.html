@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Canteen Break Rush Buster — Francis Xavier Engineering College</title>
+<meta name="description" content="Pre-book canteen food, pay by GPay UPI and skip the break-time crowd at Francis Xavier Engineering College." />
+<link rel="icon" href="/favicon.png" type="image/png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b1020; --bg2:#111936; --card:rgba(255,255,255,.06); --line:rgba(255,255,255,.12);
+  --fg:#eef2ff; --mut:#a5b0d0; --blue:#1e50a8; --blue2:#3b82f6; --lime:#8dc63f; --mag:#c0398f;
+  --amber:#ffb020; --red:#ef4444; --green:#22c55e;
+  --grad:linear-gradient(135deg,#1e50a8,#3b82f6 55%,#8dc63f);
+  --glow:0 18px 50px -18px rgba(59,130,246,.65);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Manrope,system-ui,sans-serif;color:var(--fg);
+  background:radial-gradient(1200px 700px at 12% -10%,#1b2a63 0%,transparent 60%),
+             radial-gradient(900px 600px at 100% 0%,#2a1747 0%,transparent 55%),var(--bg);
+  min-height:100vh;overflow-x:hidden}
+h1,h2,h3,.brandfont{font-family:Sora,sans-serif;letter-spacing:-.02em}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+header.top{position:sticky;top:0;z-index:40;backdrop-filter:blur(14px);background:rgba(11,16,32,.72);border-bottom:1px solid var(--line)}
+.topin{display:flex;align-items:center;gap:14px;padding:12px 0}
+.logo{height:44px;border-radius:10px;background:#fff;padding:4px}
+.brand small{display:block;color:var(--mut);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.brand b{font-size:17px;font-family:Sora}
+.spacer{flex:1}
+.tabs{display:flex;gap:6px;background:rgba(255,255,255,.06);padding:5px;border-radius:999px;border:1px solid var(--line)}
+.tabs button{border:0;background:transparent;color:var(--mut);padding:9px 16px;border-radius:999px;font-weight:700;cursor:pointer;font-size:13px;transition:.25s}
+.tabs button.on{background:var(--grad);color:#fff;box-shadow:var(--glow)}
+.hero{padding:46px 0 18px;position:relative}
+.hero h1{font-size:clamp(30px,5.2vw,56px);margin:0 0 12px;line-height:1.05}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--mut);max-width:620px;font-size:16px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.pill{border:1px solid var(--line);background:var(--card);padding:7px 13px;border-radius:999px;font-size:12.5px;color:var(--mut)}
+.grid{display:grid;gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;backdrop-filter:blur(8px)}
+.card.hl{box-shadow:var(--glow)}
+label{font-size:12px;color:var(--mut);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+input,select,textarea{width:100%;margin-top:6px;background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--fg);
+  padding:11px 12px;border-radius:12px;font-family:inherit;font-size:14px;outline:none;transition:.2s}
+input:focus,select:focus,textarea:focus{border-color:var(--blue2);box-shadow:0 0 0 3px rgba(59,130,246,.22)}
+select option{background:#111936}
+.btn{border:0;cursor:pointer;font-family:Sora;font-weight:700;border-radius:14px;padding:12px 18px;font-size:14px;
+  background:var(--grad);color:#fff;box-shadow:var(--glow);transition:transform .18s, filter .18s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none;filter:grayscale(.6)}
+.btn.ghost{background:transparent;border:1px solid var(--line);box-shadow:none;color:var(--fg)}
+.btn.sm{padding:8px 12px;font-size:12.5px;border-radius:11px}
+.btn.danger{background:linear-gradient(135deg,#b91c1c,#ef4444)}
+.btn.ok{background:linear-gradient(135deg,#15803d,#22c55e)}
+.menugrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:14px}
+.item{position:relative;overflow:hidden;border-radius:18px;border:1px solid var(--line);background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(255,255,255,.03));padding:14px;transition:.25s}
+.item:hover{transform:translateY(-4px);border-color:rgba(59,130,246,.5);box-shadow:var(--glow)}
+.item .emoji{font-size:34px;display:block;transition:transform .35s}
+.item:hover .emoji{transform:scale(1.18) rotate(-8deg)}
+.item h4{margin:8px 0 2px;font-size:15px;font-family:Sora}
+.price{font-weight:800;font-size:16px}
+.strike{color:var(--mut);text-decoration:line-through;font-size:12px;margin-right:6px;font-weight:600}
+.meta{display:flex;align-items:center;justify-content:space-between;margin-top:10px;gap:8px}
+.stockbar{height:5px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden;margin-top:9px}
+.stockbar i{display:block;height:100%;background:linear-gradient(90deg,var(--lime),var(--blue2))}
+.tag{position:absolute;top:10px;right:10px;font-size:10.5px;font-weight:800;letter-spacing:.06em;padding:4px 8px;border-radius:999px;text-transform:uppercase}
+.tag.deal{background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff;animation:pulse 1.8s infinite}
+.tag.out{background:#3b3f52;color:#c3c9dd}
+.tag.low{background:rgba(255,176,32,.2);color:var(--amber);border:1px solid rgba(255,176,32,.45)}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{width:30px;height:30px;border-radius:9px;border:1px solid var(--line);background:rgba(255,255,255,.07);color:var(--fg);font-size:16px;cursor:pointer}
+.qty button:hover{background:var(--blue2)}
+.sticky{position:sticky;top:82px}
+.row{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;padding:6px 0}
+.mut{color:var(--mut)}
+.tot{border-top:1px dashed var(--line);margin-top:8px;padding-top:10px;font-size:18px;font-weight:800;font-family:Sora}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{ text-align:left;color:var(--mut);font-size:11px;text-transform:uppercase;letter-spacing:.08em;padding:9px 8px;border-bottom:1px solid var(--line)}
+td{padding:10px 8px;border-bottom:1px solid rgba(255,255,255,.07);vertical-align:middle}
+tr.faculty td{background:rgba(192,57,143,.09)}
+.badge{font-size:11px;font-weight:800;padding:4px 9px;border-radius:999px;display:inline-block}
+.b-booked{background:rgba(59,130,246,.18);color:#93c5fd}
+.b-ready{background:rgba(34,197,94,.18);color:#86efac}
+.b-picked{background:rgba(255,255,255,.12);color:#d7ddf0}
+.b-cancel{background:rgba(239,68,68,.18);color:#fca5a5}
+.stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.stat .card b{font-size:26px;font-family:Sora;display:block}
+.toasts{position:fixed;right:16px;bottom:16px;z-index:90;display:flex;flex-direction:column;gap:10px;max-width:330px}
+.toast{background:#0f1730;border:1px solid var(--line);border-left:4px solid var(--green);border-radius:14px;padding:12px 14px;
+  box-shadow:0 20px 50px -20px #000;animation:slide .4s ease both;font-size:13px}
+.toast .t{font-weight:800;font-size:13px;display:flex;gap:8px;align-items:center;margin-bottom:3px;font-family:Sora}
+@keyframes slide{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+.modal{position:fixed;inset:0;background:rgba(4,7,18,.75);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:100;padding:18px}
+.modal.on{display:flex}
+.sheet{background:#101833;border:1px solid var(--line);border-radius:22px;padding:22px;max-width:430px;width:100%;animation:pop .35s cubic-bezier(.2,1.3,.4,1) both;text-align:center}
+@keyframes pop{from{opacity:0;transform:scale(.9) translateY(14px)}to{opacity:1;transform:none}}
+.qr{width:180px;height:180px;background:#fff;border-radius:16px;margin:14px auto;padding:8px}
+.streak{display:flex;gap:6px;justify-content:center;margin-top:10px}
+.dot{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:13px;border:1px solid var(--line);background:rgba(255,255,255,.05)}
+.dot.on{background:linear-gradient(135deg,var(--amber),#ef4444);border-color:transparent}
+.stars{display:flex;gap:3px;font-size:15px;cursor:pointer}
+.star{filter:grayscale(1);opacity:.5;transition:.15s}
+.star.on{filter:none;opacity:1;transform:scale(1.12)}
+.fly{position:fixed;z-index:200;font-size:30px;pointer-events:none;animation:fly .85s cubic-bezier(.3,-0.4,.6,1) forwards}
+@keyframes fly{0%{transform:scale(1) rotate(0)}70%{opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(.25) rotate(420deg);opacity:0}}
+.float{position:fixed;bottom:-60px;font-size:26px;opacity:.13;animation:rise linear infinite;pointer-events:none;z-index:0}
+@keyframes rise{to{transform:translateY(-115vh) rotate(360deg)}}
+.sec{padding:18px 0 46px;position:relative;z-index:1}
+.split{display:grid;grid-template-columns:1fr 340px;gap:18px;align-items:start}
+@media(max-width:900px){.split{grid-template-columns:1fr}.sticky{position:static}}
+.hide{display:none!important}
+.lane{display:inline-flex;gap:6px;background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:999px;padding:4px}
+.lane button{border:0;background:transparent;color:var(--mut);padding:7px 14px;border-radius:999px;cursor:pointer;font-weight:700;font-size:12.5px}
+.lane button.on{background:var(--grad);color:#fff}
+.notif{border-left:3px solid var(--green);background:rgba(255,255,255,.04);border-radius:12px;padding:10px 12px;font-size:12.5px;margin-bottom:8px}
+.notif b{font-family:Sora;font-size:12.5px}
+.cat{margin:22px 0 10px;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);font-weight:800}
+footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-size:12.5px;text-align:center}
+</style>
+</head>
+<body>
+<div id="floats"></div>
+
+<header class="top"><div class="wrap topin">
+  <img class="logo" src="/__l5e/assets-v1/52bf4c1a-e95f-4f76-adcc-83c6a51d2fbd/fx-logo.jpeg" alt="Francis Xavier Engineering College logo"/>
+  <div class="brand"><b>Canteen Break Rush Buster</b><small>Francis Xavier Engineering College</small></div>
+  <div class="spacer"></div>
+  <div class="tabs">
+    <button id="tabS" class="on" onclick="setView('student')">🍽 Student</button>
+    <button id="tabA" onclick="setView('admin')">🧾 Cashier / Admin</button>
+  </div>
+</div></header>
+
+<!-- ================= STUDENT ================= -->
+<main id="student">
+<section class="wrap hero">
+  <h1>Skip the queue.<br><span class="grad">Book your break in 30 seconds.</span></h1>
+  <p>Pre-order snacks, lunch, juices and ice cream, pay with GPay UPI, and just walk up and collect during your slot. No crowd, no waiting, no sold-out surprises.</p>
+  <div class="pills">
+    <span class="pill">⚡ Live stock limits</span><span class="pill">📲 Ready-for-pickup alerts</span>
+    <span class="pill">💸 GPay UPI</span><span class="pill">🔥 5-day streak = free item</span>
+    <span class="pill">♻️ Waste-buster deals</span><span class="pill">👩‍🏫 Faculty quick lane</span>
+  </div>
+</section>
+
+<section class="wrap sec split">
+  <div>
+    <div class="card hl" style="margin-bottom:16px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div><label>Full name</label><input id="fName" placeholder="e.g. Arun Kumar"/></div>
+        <div><label>Phone number</label><input id="fPhone" maxlength="10" inputmode="numeric" placeholder="10-digit mobile"/></div>
+        <div><label>Pickup slot</label><select id="fSlot"></select></div>
+        <div><label>Lane</label><div style="margin-top:6px" class="lane">
+          <button id="lnS" class="on" onclick="setLane('Student')">Student</button>
+          <button id="lnF" onclick="setLane('Faculty')">Faculty ⚡</button>
+        </div></div>
+      </div>
+      <p class="mut" style="font-size:12px;margin:10px 0 0" id="laneNote">Standard lane — collect at the student counter.</p>
+    </div>
+
+    <div id="wasteBox" class="card hide" style="margin-bottom:16px;border-color:rgba(255,176,32,.45)">
+      <b style="font-family:Sora">♻️ Waste-buster zone</b>
+      <p class="mut" style="font-size:12.5px;margin:6px 0 0" id="wasteTxt"></p>
+    </div>
+
+    <div id="menu"></div>
+  </div>
+
+  <aside class="sticky">
+    <div class="card hl">
+      <b style="font-family:Sora;font-size:16px">🛒 Your tray</b>
+      <div id="cart" class="mut" style="font-size:13px;margin-top:10px">Tray is empty — tap a dish to add it.</div>
+      <div id="totals"></div>
+      <button class="btn" id="payBtn" style="width:100%;margin-top:14px" onclick="checkout()">Pay with GPay 💳</button>
+      <p class="mut" style="font-size:11.5px;margin:10px 0 0">Unpicked orders are auto-cancelled when the slot ends and the stock is released back.</p>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <b style="font-family:Sora;font-size:15px">🔥 Streak rewards</b>
+      <div class="streak" id="streakDots"></div>
+      <p class="mut" style="font-size:12px;text-align:center;margin:10px 0 0" id="streakTxt"></p>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <b style="font-family:Sora;font-size:15px">📲 Notifications</b>
+      <div id="notifs" style="margin-top:10px"><p class="mut" style="font-size:12.5px">Your pickup alerts appear here.</p></div>
+    </div>
+  </aside>
+</section>
+
+<section class="wrap sec" id="myOrdersWrap">
+  <h2 style="font-size:20px">My orders</h2>
+  <div class="card"><div id="myOrders" class="mut" style="font-size:13px">Enter your phone number and book to see your orders.</div></div>
+</section>
+</main>
+
+<!-- ================= ADMIN ================= -->
+<main id="admin" class="hide">
+<section class="wrap sec">
+  <h1 style="font-size:30px;margin:26px 0 6px">Cashier <span class="grad">control desk</span></h1>
+  <p class="mut" style="margin:0 0 18px">Live queue auto-refreshes every 5 seconds. Slots auto-close and release unpicked stock.</p>
+  <div class="stat" id="stats"></div>
+
+  <div id="alerts" style="margin-top:16px"></div>
+
+  <div class="card" style="margin-top:16px">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px">
+      <b style="font-family:Sora;font-size:16px">Live order queue</b>
+      <span class="pill" id="clock"></span>
+      <div class="spacer" style="flex:1"></div>
+      <div class="lane">
+        <button class="on" id="qAll" onclick="setQueue('All')">All</button>
+        <button id="qStudent" onclick="setQueue('Student')">Students</button>
+        <button id="qFaculty" onclick="setQueue('Faculty')">Faculty lane</button>
+      </div>
+    </div>
+    <div style="overflow-x:auto"><table id="queue"></table></div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <b style="font-family:Sora;font-size:16px">Stock & ratings</b>
+    <div style="overflow-x:auto;margin-top:10px"><table id="stock"></table></div>
+  </div>
+</section>
+</main>
+
+<footer>Canteen Break Rush Buster · Francis Xavier Engineering College, Vannarpettai, Tirunelveli – 627 003 · Demo prototype — payments &amp; SMS are simulated.</footer>
+
+<div class="toasts" id="toasts"></div>
+
+<!-- payment modal -->
+<div class="modal" id="payModal"><div class="sheet">
+  <div style="font-size:40px">💳</div>
+  <h3 style="margin:8px 0 2px">Pay via GPay UPI</h3>
+  <p class="mut" style="font-size:13px;margin:0">FX Canteen · fxec.canteen@okicici</p>
+  <div class="qr" id="qrBox"></div>
+  <div style="font-size:30px;font-family:Sora;font-weight:800">₹<span id="payAmt">0</span></div>
+  <p class="mut" style="font-size:12px">Scan with any UPI app or tap below to simulate the payment.</p>
+  <button class="btn" style="width:100%;margin-top:8px" onclick="confirmPay()">Simulate GPay payment ✅</button>
+  <button class="btn ghost sm" style="width:100%;margin-top:8px" onclick="closeModal('payModal')">Cancel</button>
+</div></div>
+
+<!-- success modal -->
+<div class="modal" id="okModal"><div class="sheet">
+  <div style="font-size:52px" id="okEmoji">🎉</div>
+  <h3 style="margin:8px 0 4px" id="okTitle">Order confirmed!</h3>
+  <p class="mut" style="font-size:13.5px" id="okMsg"></p>
+  <button class="btn" style="width:100%;margin-top:12px" onclick="closeModal('okModal')">Great, thanks!</button>
+</div></div>
+
+<!-- rating modal -->
+<div class="modal" id="rateModal"><div class="sheet">
+  <div style="font-size:40px">⭐</div>
+  <h3 style="margin:8px 0 4px">How was it?</h3>
+  <p class="mut" style="font-size:13px;margin:0 0 6px">Your rating helps the canteen improve or drop items.</p>
+  <div id="rateList" style="text-align:left"></div>
+  <textarea id="rateNote" rows="2" placeholder="Optional feedback for the canteen team..."></textarea>
+  <button class="btn" style="width:100%;margin-top:12px" onclick="submitRating()">Submit feedback</button>
+  <button class="btn ghost sm" style="width:100%;margin-top:8px" onclick="closeModal('rateModal')">Skip</button>
+</div></div>
+
+<script>
+/* ---------------- data ---------------- */
+const MENU=[
+ {c:"Snacks",i:[
+  {id:"egpf",n:"Egg Puffs",p:25,e:"🥟",s:50},{id:"vgpf",n:"Veg Puffs",p:25,e:"🥐",s:50},
+  {id:"chrl",n:"Chicken Roll",p:30,e:"🌯",s:50},{id:"vgrl",n:"Veg Roll",p:20,e:"🫔",s:50},
+  {id:"mspf",n:"Mushroom Puff",p:20,e:"🍄",s:20},{id:"pnpf",n:"Paneer Puff",p:20,e:"🧀",s:20},
+  {id:"brom",n:"Bread Omelet",p:40,e:"🍳",s:40},
+  {id:"chsw",n:"Chicken Sandwich",p:30,e:"🥪",s:30},{id:"vgsw",n:"Veg Sandwich",p:50,e:"🥗",s:30}]},
+ {c:"Lunch",i:[
+  {id:"chbr",n:"Chicken Briyani",p:130,e:"🍛",s:40},{id:"vgfr",n:"Veg Fried Rice",p:110,e:"🍚",s:35},
+  {id:"chfr",n:"Chicken Fried Rice",p:130,e:"🍜",s:35},{id:"kthp",n:"Kothu Parotta",p:100,e:"🥘",s:30},
+  {id:"cocr",n:"Coconut Rice",p:70,e:"🥥",s:25},{id:"samr",n:"Sambar Rice",p:80,e:"🍲",s:25},
+  {id:"chgv",n:"Chicken Gravy",p:50,e:"🍗",s:30},{id:"cauf",n:"Cauliflower Fry",p:30,e:"🥦",s:25},
+  {id:"chfy",n:"Chicken Fry",p:65,e:"🍖",s:25}]},
+ {c:"Ice Cream",i:[
+  {id:"btsc",n:"Butterscotch (1 scoop)",p:50,e:"🍨",s:30},{id:"choc",n:"Chocolate (1 scoop)",p:40,e:"🍫",s:30},
+  {id:"vani",n:"Vanilla (1 scoop)",p:30,e:"🍦",s:30},{id:"pist",n:"Pista (1 scoop)",p:60,e:"🥜",s:20},
+  {id:"dkch",n:"Dark Chocolate (1 scoop)",p:40,e:"🍩",s:20},{id:"kulf",n:"Kulfi",p:20,e:"🧊",s:10}]},
+ {c:"Juices & Drinks",i:[
+  {id:"pnsd",n:"Panner Soda",p:20,e:"🥤",s:40},{id:"mira",n:"Miranda",p:30,e:"🧃",s:40},
+  {id:"oran",n:"Orange Juice",p:50,e:"🍊",s:25},{id:"watm",n:"Watermelon Juice",p:30,e:"🍉",s:25},
+  {id:"btjs",n:"Butterscotch Shake",p:25,e:"🥛",s:25},{id:"bost",n:"Boost",p:30,e:"🍹",s:25},
+  {id:"kirn",n:"Kirni",p:80,e:"🍸",s:15},{id:"pome",n:"Pomegranate Juice",p:80,e:"🍎",s:15},
+  {id:"lemn",n:"Lemon Juice",p:25,e:"🍋",s:30},
+  {id:"tea",n:"Tea",p:15,e:"☕",s:60},{id:"coff",n:"Coffee",p:20,e:"☕",s:60},{id:"horl",n:"Horlicks",p:30,e:"🥤",s:30}]}
+];
+const SLOTS=[
+ {id:"s1",l:"Morning Break · 10:30 – 10:45",end:"10:45"},
+ {id:"s2",l:"Lunch A · 12:30 – 13:00",end:"13:00"},
+ {id:"s3",l:"Lunch B · 13:00 – 13:30",end:"13:30"},
+ {id:"s4",l:"Evening Break · 15:30 – 15:45",end:"15:45"}];
+const LOW=8, DISCOUNT=0.3;
+
+const K="cbrb_v1";
+let db=load();
+function load(){
+  try{const r=JSON.parse(localStorage.getItem(K));if(r&&r.stock)return r;}catch(e){}
+  const stock={},rat={};
+  MENU.forEach(g=>g.i.forEach(it=>{stock[it.id]=it.s;rat[it.id]={sum:0,n:0,notes:[]}}));
+  return {stock,rat,orders:[],streaks:{},seq:1001};
+}
+function save(){localStorage.setItem(K,JSON.stringify(db))}
+const all=()=>MENU.flatMap(g=>g.i);
+const item=id=>all().find(x=>x.id===id);
+const base=id=>item(id).p;
+const deal=id=>db.stock[id]>0&&db.stock[id]<=Math.max(3,Math.round(item(id).s*0.12));
+const price=id=>deal(id)?Math.round(base(id)*(1-DISCOUNT)):base(id);
+
+/* ---------------- ui state ---------------- */
+let cart={},lane="Student",queueFilter="All",view="student",rateTarget=null,pending=null;
+
+function setView(v){view=v;
+  document.getElementById("student").classList.toggle("hide",v!=="student");
+  document.getElementById("admin").classList.toggle("hide",v!=="admin");
+  document.getElementById("tabS").classList.toggle("on",v==="student");
+  document.getElementById("tabA").classList.toggle("on",v==="admin");
+  window.scrollTo({top:0,behavior:"smooth"});renderAll();}
+function setLane(l){lane=l;
+  document.getElementById("lnS").classList.toggle("on",l==="Student");
+  document.getElementById("lnF").classList.toggle("on",l==="Faculty");
+  document.getElementById("laneNote").textContent=l==="Faculty"
+   ?"⚡ Faculty quick lane — priority preparation, collect at the staff counter during free periods."
+   :"Standard lane — collect at the student counter.";}
+function setQueue(q){queueFilter=q;["All","Student","Faculty"].forEach(x=>
+  document.getElementById("q"+x).classList.toggle("on",x===q));renderQueue();}
+
+/* ---------------- menu ---------------- */
+function renderMenu(){
+  const el=document.getElementById("menu");
+  el.innerHTML=MENU.map(g=>`<div class="cat">${g.c}</div><div class="menugrid">`+g.i.map(it=>{
+    const st=db.stock[it.id],out=st<=0,d=deal(it.id),r=db.rat[it.id];
+    const avg=r.n?(r.sum/r.n).toFixed(1):null;
+    return `<div class="item" id="cd_${it.id}">
+      ${out?'<span class="tag out">Sold out</span>':d?'<span class="tag deal">-30% clear</span>':st<=LOW?'<span class="tag low">Only '+st+'</span>':''}
+      <span class="emoji">${it.e}</span>
+      <h4>${it.n}</h4>
+      <div class="mut" style="font-size:11.5px">${avg?"⭐ "+avg+" ("+r.n+")":"New item"}</div>
+      <div class="meta">
+        <div class="price">${d?'<span class="strike">₹'+it.p+'</span>':''}₹${price(it.id)}</div>
+        ${out?'<span class="mut" style="font-size:12px">—</span>':
+        `<div class="qty"><button onclick="dec('${it.id}')">−</button><b id="q_${it.id}">${cart[it.id]||0}</b><button onclick="add('${it.id}',event)">+</button></div>`}
+      </div>
+      <div class="stockbar"><i style="width:${Math.max(0,Math.min(100,st/it.s*100))}%"></i></div>
+      <div class="mut" style="font-size:11px;margin-top:5px">${st} left today</div>
+    </div>`}).join("")+`</div>`).join("");
+}
+function add(id,ev){
+  const have=cart[id]||0;
+  if(have>=db.stock[id]){toast("⚠️","Only "+db.stock[id]+" left of "+item(id).n,"var(--amber)");return;}
+  cart[id]=have+1;fly(ev,item(id).e);renderMenu();renderCart();
+}
+function dec(id){if(!cart[id])return;cart[id]--;if(!cart[id])delete cart[id];renderMenu();renderCart();}
+function fly(ev,emoji){
+  const t=document.querySelector('#cart'),r=t.getBoundingClientRect();
+  const s=document.createElement("div");s.className="fly";s.textContent=emoji;
+  s.style.left=(ev.clientX-15)+"px";s.style.top=(ev.clientY-15)+"px";
+  s.style.setProperty("--dx",(r.left+40-ev.clientX)+"px");
+  s.style.setProperty("--dy",(r.top+10-ev.clientY)+"px");
+  document.body.appendChild(s);setTimeout(()=>s.remove(),900);
+}
+
+/* ---------------- cart ---------------- */
+function cartTotal(){return Object.entries(cart).reduce((s,[id,q])=>s+price(id)*q,0)}
+function renderCart(){
+  const box=document.getElementById("cart"),tot=document.getElementById("totals"),ids=Object.keys(cart);
+  if(!ids.length){box.innerHTML='<span class="mut">Tray is empty — tap a dish to add it.</span>';tot.innerHTML="";
+    document.getElementById("payBtn").disabled=true;return;}
+  box.innerHTML=ids.map(id=>`<div class="row"><span>${item(id).e} ${item(id).n} <span class="mut">×${cart[id]}</span></span><b>₹${price(id)*cart[id]}</b></div>`).join("");
+  const saved=Object.entries(cart).reduce((s,[id,q])=>s+(base(id)-price(id))*q,0);
+  tot.innerHTML=(saved?`<div class="row"><span class="mut">Waste-buster savings</span><b style="color:var(--green)">−₹${saved}</b></div>`:"")
+   +`<div class="row tot"><span>Total</span><span>₹${cartTotal()}</span></div>`;
+  document.getElementById("payBtn").disabled=false;
+}
+
+/* ---------------- checkout ---------------- */
+function checkout(){
+  const n=document.getElementById("fName").value.trim(),p=document.getElementById("fPhone").value.trim();
+  if(n.length<3)return toast("✋","Please enter your full name.","var(--red)");
+  if(!/^[6-9]\d{9}$/.test(p))return toast("✋","Enter a valid 10-digit mobile number.","var(--red)");
+  if(!Object.keys(cart).length)return;
+  for(const[id,q]of Object.entries(cart))if(q>db.stock[id])return toast("⚠️",item(id).n+" just ran low.","var(--amber)");
+  pending={name:n,phone:p,slot:document.getElementById("fSlot").value,lane,items:{...cart},total:cartTotal()};
+  document.getElementById("payAmt").textContent=pending.total;
+  document.getElementById("qrBox").innerHTML=qr(pending.total);
+  open_("payModal");
+}
+function qr(amt){ // playful faux-QR
+  let c="";for(let i=0;i<144;i++)c+=`<div style="background:${Math.random()>.45?'#0b1020':'#fff'}"></div>`;
+  return `<div style="display:grid;grid-template-columns:repeat(12,1fr);width:100%;height:100%;gap:1px">${c}</div>`;
+}
+function confirmPay(){
+  closeModal("payModal");
+  const o={...pending,id:"FX"+(db.seq++),status:"Booked",paid:true,at:Date.now(),ref:"UPI"+Math.random().toString(36).slice(2,10).toUpperCase()};
+  for(const[id,q]of Object.entries(o.items))db.stock[id]-=q;
+  db.orders.unshift(o);
+  // streak
+  const s=db.streaks[o.phone]||{days:0,last:null,free:0};
+  const today=new Date().toDateString();
+  if(s.last!==today){s.days=s.last?s.days+1:1;s.last=today;}
+  let freeMsg="";
+  if(s.days>=5){s.days=0;s.free++;freeMsg=" 🎁 5-day streak complete — a FREE item is unlocked on your next order!";}
+  db.streaks[o.phone]=s;save();
+  cart={};renderAll();
+  document.getElementById("okEmoji").textContent="🎉";
+  document.getElementById("okTitle").textContent="Order "+o.id+" confirmed!";
+  document.getElementById("okMsg").innerHTML=`Paid ₹${o.total} via GPay (ref ${o.ref}).<br>Collect at <b>${SLOTS.find(x=>x.id===o.slot).l}</b> · ${o.lane} lane.${freeMsg}`;
+  open_("okModal");
+  notif("✅ Booking confirmed","Order "+o.id+" · ₹"+o.total+" paid via GPay UPI.");
+  setTimeout(()=>{ // mock ready-for-pickup push
+    if(db.orders.find(x=>x.id===o.id&&x.status==="Booked")){
+      notif("🔔 Ready for pickup","WhatsApp to +91 "+o.phone+": Hi "+o.name.split(" ")[0]+", your order "+o.id+" is packed and ready at the "+o.lane.toLowerCase()+" counter.");
+      toast("🔔","Ready for pickup: "+o.id,"var(--green)");}
+  },6000);
+  setTimeout(()=>{
+    notif("⏰ Slot ending soon","Only 5 minutes left in your pickup window for "+o.id+". Collect it so the food isn't wasted!");
+    toast("⏰","Slot ending in 5 min — "+o.id,"var(--amber)");
+  },13000);
+}
+
+/* ---------------- notifications & toasts ---------------- */
+function notif(t,b){
+  const el=document.getElementById("notifs");
+  if(el.querySelector("p"))el.innerHTML="";
+  el.insertAdjacentHTML("afterbegin",`<div class="notif"><b>${t}</b><div class="mut" style="margin-top:3px">${b}</div><div class="mut" style="font-size:10.5px;margin-top:4px">${new Date().toLocaleTimeString()}</div></div>`);
+}
+function toast(icon,msg,color){
+  const d=document.createElement("div");d.className="toast";d.style.borderLeftColor=color||"var(--green)";
+  d.innerHTML=`<div class="t">${icon} Canteen Break Rush Buster</div><div class="mut">${msg}</div>`;
+  document.getElementById("toasts").appendChild(d);
+  setTimeout(()=>{d.style.transition=".4s";d.style.opacity=0;setTimeout(()=>d.remove(),400)},5200);
+}
+
+/* ---------------- my orders + rating ---------------- */
+function renderMine(){
+  const p=document.getElementById("fPhone").value.trim();
+  const el=document.getElementById("myOrders");
+  const mine=db.orders.filter(o=>o.phone===p);
+  if(!p||!mine.length){el.innerHTML='<span class="mut">Enter your phone number and book to see your orders.</span>';return;}
+  el.innerHTML=`<div style="overflow-x:auto"><table><tr><th>Order</th><th>Items</th><th>Slot</th><th>Total</th><th>Status</th><th></th></tr>`+
+   mine.map(o=>`<tr><td><b>${o.id}</b></td><td>${itemsText(o)}</td><td>${SLOTS.find(s=>s.id===o.slot).l}</td><td>₹${o.total}</td>
+   <td><span class="badge b-${o.status.toLowerCase().replace(/[^a-z]/g,"")}">${o.status}</span></td>
+   <td>${o.status==="Picked up"&&!o.rated?`<button class="btn sm ghost" onclick="openRate('${o.id}')">Rate ⭐</button>`:o.rated?'<span class="mut">Rated</span>':''}</td></tr>`).join("")+`</table></div>`;
+}
+function itemsText(o){return Object.entries(o.items).map(([id,q])=>item(id).e+" "+item(id).n+"×"+q).join(", ")}
+function openRate(oid){
+  rateTarget=oid;const o=db.orders.find(x=>x.id===oid);
+  document.getElementById("rateList").innerHTML=Object.keys(o.items).map(id=>
+   `<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.08)">
+     <span style="font-size:13px">${item(id).e} ${item(id).n}</span>
+     <div class="stars" data-id="${id}">${[1,2,3,4,5].map(v=>`<span class="star" data-v="${v}" onclick="pick('${id}',${v})">⭐</span>`).join("")}</div></div>`).join("");
+  document.getElementById("rateNote").value="";open_("rateModal");
+}
+const picks={};
+function pick(id,v){picks[id]=v;
+  document.querySelectorAll(`.stars[data-id="${id}"] .star`).forEach(s=>s.classList.toggle("on",+s.dataset.v<=v));}
+function submitRating(){
+  const note=document.getElementById("rateNote").value.trim();
+  Object.entries(picks).forEach(([id,v])=>{db.rat[id].sum+=v;db.rat[id].n++;if(note)db.rat[id].notes.push(note)});
+  const o=db.orders.find(x=>x.id===rateTarget);if(o)o.rated=true;
+  Object.keys(picks).forEach(k=>delete picks[k]);save();closeModal("rateModal");
+  toast("⭐","Thanks! Your feedback reached the canteen team.");renderAll();
+}
+
+/* ---------------- streak ---------------- */
+function renderStreak(){
+  const p=document.getElementById("fPhone").value.trim();
+  const s=db.streaks[p]||{days:0,free:0};
+  document.getElementById("streakDots").innerHTML=[1,2,3,4,5].map(i=>`<div class="dot ${i<=s.days?'on':''}">${i<=s.days?'🔥':i}</div>`).join("");
+  document.getElementById("streakTxt").textContent=s.free
+   ? `You have ${s.free} free item reward${s.free>1?"s":""} waiting — mention it at the counter!`
+   : `${5-s.days} more day${5-s.days===1?"":"s"} in a row to unlock a free item.`;
+}
+
+/* ---------------- waste box ---------------- */
+function renderWaste(){
+  const d=all().filter(i=>deal(i.id));
+  const box=document.getElementById("wasteBox");
+  box.classList.toggle("hide",!d.length);
+  if(d.length)document.getElementById("wasteTxt").innerHTML=
+    "These items are close to today's cutoff and are <b>30% off</b> so nothing goes to waste: "+d.map(i=>i.e+" "+i.n).join(", ")+".";
+}
+
+/* ---------------- admin ---------------- */
+function renderStats(){
+  const act=db.orders.filter(o=>o.status==="Booked"||o.status==="Ready");
+  const rev=db.orders.filter(o=>o.status!=="Cancelled").reduce((s,o)=>s+o.total,0);
+  const low=all().filter(i=>db.stock[i.id]<=LOW).length;
+  document.getElementById("stats").innerHTML=`
+   <div class="card"><span class="mut" style="font-size:12px">Active orders</span><b>${act.length}</b></div>
+   <div class="card"><span class="mut" style="font-size:12px">Faculty lane</span><b>${act.filter(o=>o.lane==="Faculty").length}</b></div>
+   <div class="card"><span class="mut" style="font-size:12px">Collected today</span><b>₹${rev}</b></div>
+   <div class="card"><span class="mut" style="font-size:12px">Low-stock items</span><b style="color:${low?'var(--amber)':'inherit'}">${low}</b></div>
+   <div class="card"><span class="mut" style="font-size:12px">Auto-cancelled</span><b>${db.orders.filter(o=>o.status==="Cancelled").length}</b></div>`;
+  const outs=all().filter(i=>db.stock[i.id]<=0),lows=all().filter(i=>db.stock[i.id]>0&&db.stock[i.id]<=LOW);
+  document.getElementById("alerts").innerHTML=
+   (outs.length?`<div class="card" style="border-color:rgba(239,68,68,.5);margin-bottom:10px"><b style="color:#fca5a5">⛔ Sold out:</b> <span class="mut">${outs.map(i=>i.n).join(", ")}</span></div>`:"")
+  +(lows.length?`<div class="card" style="border-color:rgba(255,176,32,.5)"><b style="color:var(--amber)">⚠️ Low stock (≤${LOW}):</b> <span class="mut">${lows.map(i=>i.n+" ("+db.stock[i.id]+")").join(", ")}</span></div>`:"");
+}
+function renderQueue(){
+  const rows=db.orders.filter(o=>queueFilter==="All"||o.lane===queueFilter);
+  document.getElementById("queue").innerHTML=
+  `<tr><th>Order</th><th>Name</th><th>Phone</th><th>Lane</th><th>Items</th><th>Slot</th><th>Total</th><th>Status</th><th>Action</th></tr>`+
+  (rows.length?rows.map(o=>`<tr class="${o.lane==='Faculty'?'faculty':''}">
+    <td><b>${o.id}</b></td><td>${o.name}</td><td>${o.phone}</td>
+    <td>${o.lane==="Faculty"?"⚡ Faculty":"🎓 Student"}</td>
+    <td style="max-width:230px">${itemsText(o)}</td>
+    <td>${SLOTS.find(s=>s.id===o.slot).l}</td><td>₹${o.total}</td>
+    <td><span class="badge b-${o.status.toLowerCase().replace(/[^a-z]/g,"")}">${o.status}</span></td>
+    <td style="white-space:nowrap">${
+      o.status==="Booked"?`<button class="btn sm" onclick="mark('${o.id}','Ready')">Ready</button> <button class="btn sm danger" onclick="mark('${o.id}','Cancelled')">Cancel</button>`
+      :o.status==="Ready"?`<button class="btn sm ok" onclick="mark('${o.id}','Picked up')">Picked up</button> <button class="btn sm danger" onclick="mark('${o.id}','Cancelled')">No-show</button>`
+      :'<span class="mut">—</span>'}</td></tr>`).join("")
+   :`<tr><td colspan="9" class="mut" style="padding:22px;text-align:center">No orders yet — bookings appear here live.</td></tr>`);
+  document.getElementById("clock").textContent="Auto-refresh · "+new Date().toLocaleTimeString();
+}
+function mark(id,st){
+  const o=db.orders.find(x=>x.id===id);if(!o)return;
+  if(st==="Cancelled")Object.entries(o.items).forEach(([i,q])=>db.stock[i]+=q);
+  o.status=st;save();renderAll();
+  if(st==="Ready"){notif("🔔 Ready for pickup","SMS to +91 "+o.phone+": "+o.id+" is ready at the "+o.lane.toLowerCase()+" counter.");toast("🔔","Notified "+o.name+" — "+o.id+" ready.");}
+  if(st==="Cancelled")toast("♻️","Stock released back for "+o.id,"var(--amber)");
+  if(st==="Picked up")toast("✅",o.id+" collected. Rating request sent.");
+}
+function renderStock(){
+  document.getElementById("stock").innerHTML=`<tr><th>Item</th><th>Price</th><th>Left</th><th>Status</th><th>Rating</th><th>Restock</th></tr>`+
+  all().map(i=>{const st=db.stock[i.id],r=db.rat[i.id];
+   return `<tr><td>${i.e} ${i.n}</td><td>₹${price(i.id)}</td><td><b>${st}</b>/${i.s}</td>
+   <td>${st<=0?'<span class="badge b-cancel">Sold out</span>':st<=LOW?'<span class="badge" style="background:rgba(255,176,32,.2);color:var(--amber)">Low</span>':'<span class="badge b-ready">Healthy</span>'}</td>
+   <td>${r.n?"⭐ "+(r.sum/r.n).toFixed(1)+" ("+r.n+")":'<span class="mut">—</span>'}</td>
+   <td><button class="btn sm ghost" onclick="restock('${i.id}')">+10</button></td></tr>`}).join("");
+}
+function restock(id){db.stock[id]+=10;save();renderAll();toast("📦","Restocked "+item(id).n+" (+10)");}
+
+/* auto-cancel no-shows after slot ends (demo: 40s after booking) */
+setInterval(()=>{
+  let ch=false;
+  db.orders.forEach(o=>{
+    if((o.status==="Booked"||o.status==="Ready")&&Date.now()-o.at>40000){
+      o.status="Cancelled";Object.entries(o.items).forEach(([i,q])=>db.stock[i]+=q);ch=true;
+      toast("⛔","No-show: "+o.id+" auto-cancelled, stock released.","var(--red)");
+    }});
+  if(ch){save();renderAll();}
+},5000);
+setInterval(()=>{if(view==="admin"){renderQueue();renderStats();}},5000);
+
+/* ---------------- boot ---------------- */
+function open_(id){document.getElementById(id).classList.add("on")}
+function closeModal(id){document.getElementById(id).classList.remove("on")}
+function renderAll(){renderMenu();renderCart();renderWaste();renderStreak();renderMine();renderStats();renderQueue();renderStock();}
+document.getElementById("fSlot").innerHTML=SLOTS.map(s=>`<option value="${s.id}">${s.l}</option>`).join("");
+document.getElementById("fPhone").addEventListener("input",e=>{e.target.value=e.target.value.replace(/\D/g,"");renderStreak();renderMine();});
+["🍕","🍟","🍩","🥤","🍦","🍛","🥪","🍗","🧃","🥐"].forEach((e,i)=>{
+  const d=document.createElement("div");d.className="float";d.textContent=e;
+  d.style.left=(6+i*10)+"%";d.style.animationDuration=(16+i*2.2)+"s";d.style.animationDelay=(-i*3)+"s";
+  document.getElementById("floats").appendChild(d);});
+renderAll();
+setTimeout(()=>toast("👋","Welcome! Book now and walk straight to the counter."),900);
+</script>
+</body>
+</html>
