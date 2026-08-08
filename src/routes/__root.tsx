@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "Canteen Break Rush Buster | FX Engineering College" },
+      { name: "description", content: "Pre-book canteen food, pay by GPay UPI and skip the break-time crowd at Francis Xavier Engineering College." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "Canteen Break Rush Buster | FX Engineering College" },
+      { property: "og:description", content: "Pre-book canteen food, pay by GPay UPI and skip the break-time crowd at Francis Xavier Engineering College." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Canteen Break Rush Buster | FX Engineering College" },
+      { name: "twitter:description", content: "Pre-book canteen food, pay by GPay UPI and skip the break-time crowd at Francis Xavier Engineering College." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8b8c6b4e2bdf46592bca8e9c6d88df64/id-preview-2f16c666--a670bd6d-2413-48cc-9ce6-b84f28c678f3.lovable.app-1786172150296.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8b8c6b4e2bdf46592bca8e9c6d88df64/id-preview-2f16c666--a670bd6d-2413-48cc-9ce6-b84f28c678f3.lovable.app-1786172150296.png" },
     ],
     links: [
       {

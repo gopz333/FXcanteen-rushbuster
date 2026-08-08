@@ -9,10 +9,10 @@ export const Route = createFileRoute("/")({
         content:
           "Pre-book canteen food, pay by GPay UPI and skip the break-time crowd at Francis Xavier Engineering College.",
       },
-      { property: "og:title", content: "Canteen Break Rush Buster | FXEC" },
+      { property: "og:title", content: "Canteen Break Rush Buster | FX Engineering College" },
       {
         property: "og:description",
-        content: "Book snacks, lunch and drinks in 30 seconds. No queue, no sold-out surprises.",
+        content: "Pre-book canteen food, pay by GPay UPI and skip the break-time crowd at Francis Xavier Engineering College.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
