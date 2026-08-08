@@ -155,6 +155,7 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-siz
   <img class="logo" src="/__l5e/assets-v1/52bf4c1a-e95f-4f76-adcc-83c6a51d2fbd/fx-logo.jpeg" alt="Francis Xavier Engineering College logo"/>
   <div class="brand"><b>Canteen Break Rush Buster</b><small>Francis Xavier Engineering College</small></div>
   <div class="spacer"></div>
+  <button class="themebtn" id="themeBtn" title="Switch theme" onclick="toggleTheme()">🌙</button>
   <div class="tabs">
     <button id="tabS" class="on" onclick="setView('student')">🍽 Student</button>
     <button id="tabA" onclick="setView('admin')">🧾 Cashier / Admin</button>
@@ -165,18 +166,24 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-siz
 <main id="student">
 <section class="wrap hero">
   <h1>Skip the queue.<br><span class="grad">Book your break in 30 seconds.</span></h1>
-  <p>Pre-order snacks, lunch, juices and ice cream, pay with GPay UPI, and just walk up and collect during your slot. No crowd, no waiting, no sold-out surprises.</p>
+  <p>Pre-order snacks, lunch, juices and ice cream, pay by UPI QR or in person at the counter, then walk up and collect during your slot.</p>
   <div class="pills">
     <span class="pill">⚡ Live stock limits</span><span class="pill">📲 Ready-for-pickup alerts</span>
-    <span class="pill">💸 GPay UPI</span><span class="pill">🔥 5-day streak = free item</span>
+    <span class="pill">💸 UPI QR or cash</span><span class="pill">🔥 5-day streak = free item</span>
     <span class="pill">♻️ Waste-buster deals</span><span class="pill">👩‍🏫 Faculty quick lane</span>
+  </div>
+  <div class="hero-cards">
+    <div class="hc"><b>1 · Your details</b><span>Name, phone and pickup slot.</span></div>
+    <div class="hc"><b>2 · Fill your tray</b><span>Tap dishes — live stock, no sold-out shocks.</span></div>
+    <div class="hc"><b>3 · Pay your way</b><span>Scan the UPI QR or choose pay in person.</span></div>
+    <div class="hc"><b>4 · Walk & collect</b><span>Straight to the counter. Zero waiting.</span></div>
   </div>
 </section>
 
 <section class="wrap sec split">
-  <div>
-    <div class="card hl" style="margin-bottom:16px">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+  <aside class="sticky">
+    <div class="card hl">
+      <div style="display:grid;gap:12px">
         <div><label>Full name</label><input id="fName" placeholder="e.g. Arun Kumar"/></div>
         <div><label>Phone number</label><input id="fPhone" maxlength="10" inputmode="numeric" placeholder="10-digit mobile"/></div>
         <div><label>Pickup slot</label><select id="fSlot"></select></div>
@@ -188,20 +195,11 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-siz
       <p class="mut" style="font-size:12px;margin:10px 0 0" id="laneNote">Standard lane — collect at the student counter.</p>
     </div>
 
-    <div id="wasteBox" class="card hide" style="margin-bottom:16px;border-color:rgba(255,176,32,.45)">
-      <b style="font-family:Sora">♻️ Waste-buster zone</b>
-      <p class="mut" style="font-size:12.5px;margin:6px 0 0" id="wasteTxt"></p>
-    </div>
-
-    <div id="menu"></div>
-  </div>
-
-  <aside class="sticky">
-    <div class="card hl">
+    <div class="card hl" style="margin-top:14px">
       <b style="font-family:Sora;font-size:16px">🛒 Your tray</b>
       <div id="cart" class="mut" style="font-size:13px;margin-top:10px">Tray is empty — tap a dish to add it.</div>
       <div id="totals"></div>
-      <button class="btn" id="payBtn" style="width:100%;margin-top:14px" onclick="checkout()">Pay with GPay 💳</button>
+      <button class="btn" id="payBtn" style="width:100%;margin-top:14px" onclick="checkout()">Book & choose payment 💳</button>
       <p class="mut" style="font-size:11.5px;margin:10px 0 0">Unpicked orders are auto-cancelled when the slot ends and the stock is released back.</p>
     </div>
 
@@ -216,6 +214,14 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-siz
       <div id="notifs" style="margin-top:10px"><p class="mut" style="font-size:12.5px">Your pickup alerts appear here.</p></div>
     </div>
   </aside>
+
+  <div>
+    <div id="wasteBox" class="card hide" style="margin-bottom:16px;border-color:rgba(255,176,32,.45)">
+      <b style="font-family:Sora">♻️ Waste-buster zone</b>
+      <p class="mut" style="font-size:12.5px;margin:6px 0 0" id="wasteTxt"></p>
+    </div>
+    <div id="menu"></div>
+  </div>
 </section>
 
 <section class="wrap sec" id="myOrdersWrap">
